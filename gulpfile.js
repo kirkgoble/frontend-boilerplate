@@ -9,13 +9,35 @@ const uglify = require('gulp-uglify');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+
+var browserSync = require('browser-sync').create();
+
 var replace = require('gulp-replace');
 
 
 // File paths
 const files = {
     scssPath: 'app/scss/**/*.scss',
-    jsPath: 'app/js/**/*.js'
+    jsPath: 'app/js/**/*.js',
+    indexPath: 'app/index.html'
+}
+
+// BrowserSync
+function serve(done) {
+    browserSync.init({
+        server: {
+            baseDir: "./dist",
+            startPath: "index.html",
+        },
+        port: 3000
+    });
+    done();
+}
+
+// BrowserSync Reload
+function reload(done) {
+    browserSync.reload();
+    done();
 }
 
 // Sass task: compiles the style.scss file into style.css
@@ -25,7 +47,7 @@ function scssTask(){
         .pipe(sass()) // compile SCSS to CSS
         .pipe(postcss([ autoprefixer(), cssnano() ])) // PostCSS plugins
         .pipe(sourcemaps.write('.')) // write sourcemaps file in current directory
-        .pipe(dest('dist')
+        .pipe(dest('dist/assets/css')
         ); // put final CSS in dist folder
 }
 
@@ -35,25 +57,39 @@ function jsTask(){
         files.jsPath
         //,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
     ])
-        .pipe(concat('all.js'))
+        .pipe(concat('bundle.min.js'))
         .pipe(uglify())
+        .pipe(dest('dist/assets/js')
+        );
+}
+
+// HTML task:
+function htmlTask(){
+    return src("app/*.html")
+        //.pipe(uglify())
         .pipe(dest('dist')
         );
 }
 
+
 // Cachebust
-var cbString = new Date().getTime();
 function cacheBustTask(){
-    return src(['index.html'])
+    var cbString = new Date().getTime();
+    console.log('cacheBustTask : '+ cbString);
+    return src(['app/index.html'])
         .pipe(replace(/cb=\d+/g, 'cb=' + cbString))
-        .pipe(dest('.'));
+        .pipe(dest('dist')
+        );
 }
 
 // Watch task: watch SCSS and JS files for changes
 // If any change, run scss and js tasks simultaneously
 function watchTask(){
-    watch([files.scssPath, files.jsPath],
-        parallel(scssTask, jsTask));
+    // watch([files.scssPath, files.jsPath],
+    //     parallel(scssTask, jsTask));
+    watch(files.scssPath, parallel(scssTask, reload));
+    watch(files.jsPath, parallel(jsTask, reload));
+    watch('app/*.html', parallel(cacheBustTask, reload));
 }
 
 // Export the default Gulp task so it can be run
@@ -62,5 +98,7 @@ function watchTask(){
 exports.default = series(
     parallel(scssTask, jsTask),
     cacheBustTask,
+    //htmlTask,
+    serve,
     watchTask
 );
