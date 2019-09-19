@@ -51,7 +51,7 @@ function scssTask(){
     // put final CSS in dist folder
 }
 
-// JS task: concatenates and uglifies JS files to script.js
+// JS task: concatenates and uglifies JS files to app.js
 // function jsTask(){
 //     return src([
 //         files.jsPath

@@ -11,14 +11,16 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
 var browserSync = require('browser-sync').create();
-
 var replace = require('gulp-replace');
+var babel = require('gulp-babel');
+var browserify = require('gulp-browserify');
 
 
 // File paths
 const files = {
     scssPath: 'app/scss/**/*.scss',
     jsPath: 'app/js/**/*.js',
+    //jsPath: 'app/js/**/app.js',
     indexPath: 'app/index.html'
 }
 
@@ -51,12 +53,15 @@ function scssTask(){
         ); // put final CSS in dist folder
 }
 
-// JS task: concatenates and uglifies JS files to script.js
+// JS task: concatenates and uglifies JS files to app.js
 function jsTask(){
     return src([
-        files.jsPath
+        //files.jsPath
+        'app/js/**/app.js'
         //,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
     ])
+        //.pipe(browserify())
+        .pipe(babel({presets: ['@babel/preset-env']}))
         .pipe(concat('bundle.min.js'))
         .pipe(uglify())
         .pipe(dest('dist/assets/js')
