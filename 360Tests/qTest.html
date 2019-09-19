@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function sendPM() {
+            console.log('sendPM');
+            console.log('window.innerWidth : ' + window.innerWidth);
+            //console.log('window.parent.parent.innerWidth : ' + window.parent.parent.innerWidth);
+            window.innerWidth = 600;
+            
+            window.parent.parent.postMessage(
+                {
+                    id: 'q7',
+                    dataObj: {
+                        v1: 'value1',
+                        v2: 'value2'
+                    }
+                }, '*');
+        }
+    </script>
+</head>
+<body style="background: white;">
+<h2>The Button Element</h2>
+<button type="button" onclick="sendPM();">Click Me!</button>
+
+<!--<button type="button" onclick="window.parent.parent.postMessage(-->
+    <!--{-->
+        <!--id: 'q7',-->
+        <!--dataObj: {-->
+            <!--v1: 'value1',-->
+            <!--v2: 'value2'-->
+        <!--}-->
+    <!--}, '*')">Click Me!</button>-->
+
+</body>
+</html>

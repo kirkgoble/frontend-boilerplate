@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panorama id="node1" appversion="6.0.6" apprev="17336">
+  <input levelingpitch="0" leveltilesize="510" overlap="1" levelingroll="0" levelbias="0.400" leveltileurl="tiles/node1/cf_%c/l_%l/c_%x/tile_%y.jpg" width="480" height="480" levelbiashidpi="1.000">
+    <level predecode="1" preload="1" width="480" height="480"/>
+    <preview color="0x808080" strip="1"/>
+    <video startmutedmobile="0" endaction="loop" startonload="1" format="equirectangular">
+      <source url="videos/360_VR Master Series _ Free Download _ London On Tower Bridge.mp4"/>
+    </video>
+  </input>
+  <view fovmode="0" pannorth="0">
+    <start tilt="0" fov="70" pan="0" projection="4"/>
+    <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+    <min tilt="-90" pan="0" fovpixel="2"/>
+    <max tilt="90" fov="120" pan="360" scaletofit="1" fovstereographic="270" fovfisheye="360"/>
+  </view>
+  <userdata comment="" customnodeid="" title="" source="" info="" author="" tags="media" latitude="" description="" datetime="" longitude="" copyright=""/>
+  <hotspots wordwrap="1" width="180" height="20">
+    <label textalpha="1" borderalpha="1" wordwrap="1" width="180" borderradius="1" backgroundalpha="1" border="1" textcolor="0x000000" height="20" backgroundcolor="0xffffff" enabled="1" bordercolor="0x000000" background="1"/>
+    <polystyle handcursor="1" borderalpha="1" backgroundalpha="0.25098" mode="0" backgroundcolor="0x0000ff" bordercolor="0x0000ff"/>
+    <hotspot tilt="-7.44" skinid="ht_url" title="" url="" id="Point01" pan="-181.05" description="" target="_blank"/>
+  </hotspots>
+  <media/>
+  <transition blendcolor="0x000000" zoomout="0" blendtime="1" zoomfov="20" zoomin="0" softedge="0" zoomoutpause="1" type="crossdissolve" enabled="1" zoomspeed="2"/>
+  <animation animsequence="Animation01" syncanimationwithvideo="0" useinautorotation="0"/>
+  <control invertwheel="0" simulatemass="1" lockedmouse="0" speedwheel="1" lockedwheel="0" invertcontrol="1" dblclickfullscreen="0" lockedkeyboard="0" sensitivity="8" lockedkeyboardzoom="0" contextfullscreen="1" contextprojections="0" rubberband="0"/>
+</panorama>

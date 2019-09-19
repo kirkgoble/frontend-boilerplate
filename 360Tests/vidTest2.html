@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        .container {
+            height: calc(100% - 62px);
+            position: relative;
+        }
+        .embed-responsive {
+            position: absolute;
+            left: 0; right: 0;
+            top: 50%;
+            margin-top: -28.1%;
+            /* video height / video width */
+            padding-bottom: 56.2%;
+            height: 0;
+            overflow: hidden;
+        }
+        .embed-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script>
+        window.onmessage = function(e){
+            if (e.data.id == 'q7') {
+                alert('It works! : '+e.data.dataObj.v1);
+            }
+        };
+    </script>
+</head>
+<body>
+
+
+
+<!--<div><h1>Answer the questions</h1></div>-->
+<div class="container">
+    <!--<div class="embed-responsive">-->
+        <!--<iframe src="//player.vimeo.com/video/85847275" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>-->
+        <iframe width="100%" height="100%" data-original-width="640" data-original-height="360" src="https://www.thinglink.com/mediacard/1215332130519777285" type="text/html" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen scrolling="no"></iframe>
+
+        <!--<iframe width="640" height="360" data-original-width="640" data-original-height="360" src="https://www.thinglink.com/videocard/1216328513880064005" type="text/html" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen scrolling="no"></iframe>-->
+        
+    <!--</div>-->
+        
+</div>
+
+<div class="pop" style="width: 80%; height: calc(80% - 60px); background: yellow; position: absolute; top:10%; left:10%;"></div>
+
+<div class="footer" style="width: 100%; height: 60px; background: #00b5e2; position: absolute; bottom:0;"></div>
+</body>
+</html>
