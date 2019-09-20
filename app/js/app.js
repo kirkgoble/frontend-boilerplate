@@ -1,6 +1,8 @@
-console.log("Load app.js");
+import { $on, qs, $log, $logt } from "./util";
 
-import docReady from "./windowLoaded";
+console.log("Load app.js");
+$log('init');
+
 
 //function docReady(callback) {
 //    function completed() {
@@ -27,4 +29,4 @@ import docReady from "./windowLoaded";
 //});
 
 // Instantiating the global app object
-var app = {};
+//var app = {};
